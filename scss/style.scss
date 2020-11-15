@@ -1,0 +1,690 @@
+// === Imports ===
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@font-face {
+    font-family: 'Post No Bills Jaffna Bold';
+    src: url('../fonts/PostNoBillsJaffna-Bold.woff') format('woff');
+}
+
+@import 'reset.scss';
+// === / Imports ===
+// === Mixins ===
+@mixin section-inner {
+    max-width: 111rem;
+    margin: 0 auto;
+}
+
+@mixin gradient {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: $color-gradient;
+}
+
+@mixin title-h2 {
+    z-index: 2;
+    position: relative;
+    font-size: 3.6rem;
+    font-weight: 700;
+    font-family: $font-secondary;
+    color: white;
+    text-transform: uppercase;
+    &::after {
+        content: '';
+        position: absolute;
+        top: 8rem;
+        bottom: 0;
+        right: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 15rem;
+        height: 0.1rem;
+        background-color: $color-white;
+    }
+    @media (max-width: 770px) {
+        font-size: 3rem;
+    }
+}
+
+@mixin button-h2 {
+    z-index: 2;
+    padding: 1.5rem 4rem;
+    font-size: 1.8rem;
+    font-weight: normal;
+    font-family: $font-main;
+    color: $color-white;
+    text-transform: uppercase;
+    border: .1rem solid $color-white;
+}
+
+// === / Mixins ===
+// === Variables ===
+$color-white: #fff;
+$color-white-oppacity: rgba(255,
+255,
+255,
+.4);
+$color-gray: #969696;
+$color-gray2: #D0D0D0;
+$color-black: #000000;
+$color-black2: #0F0F0F;
+$color-black3: #1F1F1F;
+$color-black4: #191B1C;
+$color-gradient: rgba(15,
+15,
+15,
+.5);
+$color-gradient2: rgba(15,
+15,
+15,
+.85);
+$font-main: 'PT Sans',
+sans-serif;
+$font-secondary: 'Playfair Display',
+serif;
+$font-logo: 'Post No Bills Jaffna Bold',
+'Playfair Display',
+serif;
+// === / Variables ===
+// === Common ===
+* {
+    box-sizing: border-box;
+    transition: .1s;
+}
+
+html {
+    font-size: 10px;
+    @media (max-width: 1100px) {
+        font-size: 8px;
+    }
+    @media (max-width: 770px) {
+        font-size: 7px;
+    }
+}
+
+a {
+    font: inherit;
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.first-screen-wrapper {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.section-outer {
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.product-card {
+    font-weight: normal;
+    font-family: $font-secondary;
+    color: $color-white;
+    &__img {
+        margin-bottom: 2.5rem;
+        width: 26rem;
+        height: 32.6rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: $color-black4;
+    }
+    &__title {
+        margin-bottom: 1.5rem;
+        font-size: 1.8rem;
+        line-height: 2.4rem;
+    }
+    &__price {
+        font-size: 1.6rem;
+        line-height: 2.1rem;
+    }
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    &__item {
+        margin-right: 1.8rem;
+        margin-bottom: 1.8rem;
+        padding: 1.5rem;
+        background-color: $color-black2;
+    }
+}
+
+// === / Common ===
+// === Header ===
+.header {
+    position: fixed;
+    z-index: 15;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    &__section1 {
+        background-color: $color-black;
+    }
+    &__section2 {
+        background-color: $color-black2;
+        @media (max-width: 770px) {
+            padding-bottom: 15px;
+            padding-top: 15px;
+        }
+    }
+    &__inner {
+        @include section-inner;
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+.info {
+    padding: 1rem 0;
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: normal;
+    line-height: 1.5rem;
+    color: $color-gray;
+    &__work-time {
+        @media (max-width: 530px) {
+            display: none;
+        }
+    }
+    &__img {
+        margin-right: 1.1rem;
+        margin-bottom: -.3rem;
+    }
+    &__text a {
+        &:hover {
+            color: $color-white;
+            text-decoration: underline;
+        }
+    }
+}
+
+.logo {
+    display: block;
+    img {
+        width: 100%;
+    }
+}
+
+.burger {
+    display: none;
+    @media (max-width: 770px) {
+        display: block;
+        z-index: 10;
+        position: relative;
+        width: 30px;
+        height: 20px;
+        &::before,
+        &::after {
+            content: '';
+            position: absolute;
+            background-color: #fff;
+            width: 100%;
+            height: 3px;
+            left: 0;
+        }
+        &::before {
+            top: 0;
+            height: 3px;
+        }
+        &::after {
+            bottom: 0;
+        }
+        span {
+            position: absolute;
+            background-color: #fff;
+            left: 0;
+            width: 100%;
+            top: 9px;
+            height: 3px;
+        }
+    }
+}
+
+.burger.active {
+    span {
+        transform: scale(0);
+    }
+    &::before {
+        transform: rotate(45deg);
+        top: 9px;
+    }
+    &::after {
+        transform: rotate(-45deg);
+        bottom: 9px;
+    }
+}
+
+.nav {
+    @media (max-width: 770px) {
+        position: fixed;
+        top: -100%;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: $color-black3;
+        color: $color-gray2;
+    }
+    &__list {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        @media (max-width: 770px) {
+            flex-direction: column;
+            margin-top: 30px;
+        }
+    }
+    &__item {
+        padding: 2.5rem 3rem;
+        font-size: 1.4rem;
+        font-weight: normal;
+        font-family: $font-main;
+        line-height: 1.8rem;
+        color: $color-gray;
+        text-transform: uppercase;
+        @media (max-width: 770px) {
+            font-size: 3rem;
+            &:hover {
+                color: $color-white;
+            }
+        }
+        img {
+            margin-bottom: -.8rem;
+        }
+        &:hover {
+            background-color: $color-black3;
+            color: $color-white;
+        }
+    }
+}
+
+.nav.active {
+    top: 0;
+}
+
+.frame {
+    width: 32rem;
+    height: 32rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: $color-white;
+    border: .4rem solid $color-white;
+    z-index: 2;
+    &__title {
+        h1 {
+            font-size: 6.4rem;
+            font-weight: bold;
+            font-family: $font-logo;
+        }
+    }
+    &__subtitle {
+        margin-top: -.5rem;
+        padding-top: .5rem;
+        border-top: .2rem solid $color-white;
+        h2 {
+            font-size: 2.2rem;
+            font-weight: normal;
+            font-family: $font-main;
+            text-transform: uppercase;
+        }
+    }
+}
+
+// === / Header ===
+// === Main ===
+.main {
+    margin-top: 10rem;
+    flex-grow: 1;
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: url('../img/main-picture.png') 50% 50% no-repeat;
+    background-size: cover;
+    &::before {
+        @include gradient;
+    }
+    &__text {
+        z-index: 2;
+        width: 73rem;
+        margin-top: 8rem;
+        font-size: 1.6rem;
+        font-weight: normal;
+        font-family: $font-main;
+        line-height: 2.4rem;
+        color: $color-white;
+        text-transform: uppercase;
+        text-align: center;
+        @media (max-width: 770px) {
+            width: 70%;
+            line-height: 3rem;
+        }
+    }
+}
+
+// === / Main ===
+// ===  New Collecton ===
+.new-collection {
+    display: flex;
+    @media (max-width: 770px) {
+        flex-direction: column;
+    }
+    .goods {
+        width: 55%;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        background-color: $color-black;
+        @media (max-width: 770px) {
+            width: 100%;
+        }
+        &__title {
+            @include title-h2;
+            margin: 9rem;
+        }
+        &__list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .product-card {
+            margin-bottom: 6rem;
+            margin-left: .5rem;
+            margin-right: .5rem;
+        }
+    }
+    .catalog {
+        position: relative;
+        width: 45%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: url('../img/new-collection.png');
+        background-position: 1% 50%;
+        background-size: cover;
+        @media (max-width: 770px) {
+            width: 100%;
+            background-position: 50% 50%;
+        }
+        &::before {
+            @include gradient;
+        }
+        &__title {
+            @include title-h2;
+            margin-top: 42rem;
+            @media (max-width: 770px) {
+                margin-bottom: 3rem;
+            }
+        }
+        &__button {
+            @include button-h2;
+            margin-top: 8rem;
+            @media (max-width: 770px) {
+                margin-bottom: 3rem;
+            }
+        }
+    }
+}
+
+// === / New Collecton ===
+// ===  Old Collecton ===
+.old-collection {
+    display: flex;
+    @media (max-width: 770px) {
+        flex-direction: column;
+    }
+    &__img {
+        position: relative;
+        width: 45%;
+        height: 60rem;
+        background: url('../img/old-collection.png');
+        background-position: 50% 50%;
+        &::after {
+            @include gradient;
+        }
+        @media (max-width: 770px) {
+            width: 100%;
+            background-position: 50% 50%;
+            order: 2;
+        }
+    }
+    &__content {
+        width: 55%;
+        margin: 0 auto;
+        padding: 2rem 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        background-color: $color-black;
+        @media (max-width: 770px) {
+            width: 100%;
+        }
+    }
+    &__item {
+        width: 50%;
+        margin: 0 auto;
+        text-align: center;
+        @media (max-width: 770px) {
+            width: 75%;
+        }
+    }
+    &__title {
+        @include title-h2;
+        @media (max-width: 1200px) {
+            font-size: 2.8rem;
+            margin-bottom: 6rem;
+            &::after {
+                top: 6rem;
+            }
+        }
+    }
+    &__text {
+        font-size: 1.4rem;
+        font-weight: normal;
+        font-family: $font-main;
+        line-height: 2.1rem;
+        color: $color-white;
+        @media (max-width: 1200px) {
+            margin-bottom: 3rem;
+        }
+    }
+    &__button {
+        @include button-h2;
+        padding: 1.4rem 1.5rem;
+        margin: 0 auto;
+        width: 70%;
+        line-height: 2.4rem;
+    }
+}
+
+// === / Old Collecton ===
+// ===  New Income ===
+.new-income {
+    background-color: $color-black;
+    .goods {
+        @include section-inner;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        &__title {
+            @include title-h2;
+            margin: 9rem auto;
+            text-align: center;
+            @media (max-width: 770px) {
+                line-height: 3rem;
+            }
+            &::after {
+                @media (max-width: 770px) {
+                    top: 7rem;
+                }
+            }
+        }
+        &__list {
+            width: 100%;
+            margin-bottom: 9rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            .product-card {
+                margin: 0 .1rem;
+                margin-bottom: 6rem;
+            }
+            @media (max-width: 1100px) {
+                justify-content: space-around;
+            }
+        }
+    }
+}
+
+// === / New Income ===
+// ===  Our Brands ===
+.our-brands {
+    background-color: $color-black2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    &__title {
+        @include title-h2;
+        @include section-inner;
+        margin-top: 5rem;
+        margin-bottom: 7rem;
+    }
+    &__list {
+        @include section-inner;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-bottom: 5rem;
+        @media (max-width: 1100px) {
+            width: 70%;
+        }
+        @media (max-width: 770px) {
+            width: 90%;
+            justify-content: space-around;
+        }
+    }
+}
+
+// === / Our Brands ===
+// ===  Footer ===
+.footer {
+    font-size: 1.4rem;
+    font-weight: normal;
+    font-family: $font-main;
+    line-height: 2.1rem;
+    color: $color-white;
+    &__section1 {
+        padding-top: 8rem;
+        padding-bottom: 8rem;
+        position: relative;
+        background: url('../img/footer-picture.png');
+        background-position: 50% 50%;
+        &::before {
+            @include gradient;
+            background-color: $color-gradient2;
+        }
+        @media (max-width: 1199px) {
+            background-size: cover;
+        }
+    }
+    &__inner {
+        @include section-inner;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    &__section2 {
+        padding-top: 1.6rem;
+        padding-bottom: 1.6rem;
+        font-size: 1.2rem;
+        background-color: $color-black;
+    }
+    &__item {
+        z-index: 10;
+        width: 32%;
+        color: $color-white;
+        @media (max-width: 1099px) {
+            width: 45%;
+        }
+        @media (max-width: 770px) {
+            width: 75%;
+            margin-bottom: 3rem;
+        }
+        .subscribe {
+            margin-top: 4rem;
+            display: flex;
+            &__input {
+                width: 65%;
+                input {
+                    width: 100%;
+                    padding: 1.5rem;
+                    border: none;
+                    outline: none;
+                    background-color: $color-white-oppacity;
+                    color: $color-white;
+                    &::placeholder {
+                        color: $color-gray;
+                    }
+                    &:focus {
+                        background: $color-gray;
+                    }
+                }
+            }
+            &__button {
+                width: 30%;
+                button {
+                    padding: 1.5rem;
+                    border: none;
+                    outline: none;
+                    background-color: $color-black;
+                    font-size: 1.4rem;
+                    font-family: $font-main;
+                    text-transform: uppercase;
+                    color: $color-white;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+    &__item:last-child {
+        @media (max-width: 1099px) {
+            margin-top: 3rem;
+        }
+        @media (max-width: 700px) {
+            margin-top: 0;
+        }
+    }
+    &__title {
+        margin-bottom: 4rem;
+        font-size: 2.4rem;
+        font-weight: normal;
+        font-family: $font-secondary;
+        text-transform: uppercase;
+    }
+    &__copywright {
+        color: $color-gray2;
+    }
+    &__author {
+        font-weight: 700;
+    }
+}
+
+// === / Footer ===
